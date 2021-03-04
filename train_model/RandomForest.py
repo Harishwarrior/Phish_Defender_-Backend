@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-
-
-# ----------------importing libraries
+# importing libraries
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
@@ -12,7 +9,7 @@ from sklearn.ensemble import RandomForestClassifier
 import joblib
 import os
 
-# get current directory  
+# get current directory
 current_directory = os.getcwd()
 
 
@@ -27,18 +24,17 @@ y = dataset.iloc[:, -1:].values
 x_train, x_test, y_train, y_test = train_test_split(
     x, y, test_size=0.25, random_state=0)
 
-# ----------------applying grid search to find best performing parameters
+# applying grid search to find best performing parameters
 parameters = [{'n_estimators': [100, 700],
                'max_features': ['sqrt', 'log2'],
                'criterion':['gini', 'entropy']}]
-
 grid_search = GridSearchCV(RandomForestClassifier(),
                            parameters, cv=5, n_jobs=-1)
 grid_search.fit(x_train, y_train.ravel())
+
 # printing best parameters
 print("Best Accuracy =" + str(grid_search.best_score_))
 print("best parameters =" + str(grid_search.best_params_))
-# -------------------------------------------------------------------------
 
 # fitting RandomForest regression with best params
 classifier = RandomForestClassifier(
@@ -52,21 +48,18 @@ y_pred = classifier.predict(x_test)
 cm = confusion_matrix(y_test, y_pred)
 print(cm)
 
-
 # pickle file joblib
 joblib.dump(classifier, current_directory+"/final_models/rf_final.pkl")
 
-
-# -------------Features Importance random forest
+# features importance random forest
 names = dataset.iloc[:, :-1].columns
 importances = classifier.feature_importances_
 sorted_importances = sorted(importances, reverse=True)
 indices = np.argsort(-importances)
 var_imp = pd.DataFrame(
     sorted_importances, names[indices], columns=['importance'])
-
-
-# -------------plotting variable importance
+    
+# plotting variable importance
 plt.title("Variable Importances")
 plt.barh(np.arange(len(names)), sorted_importances, height=0.7)
 plt.yticks(np.arange(len(names)), names[indices], fontsize=7)

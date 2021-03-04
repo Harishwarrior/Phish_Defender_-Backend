@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # importing the libraries
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix

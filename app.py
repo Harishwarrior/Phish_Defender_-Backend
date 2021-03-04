@@ -1,4 +1,5 @@
-from flask import Flask, abort, jsonify, request,render_template
+# importing libraries
+from flask import Flask, abort, jsonify, request, render_template
 from flask_cors import CORS, cross_origin
 from flask_ngrok import run_with_ngrok
 import time
@@ -10,11 +11,12 @@ import joblib
 import inputScript
 import numpy as np
 
+# Start ngrok when app is run
+app = Flask(__name__)
+run_with_ngrok(app)
 
-application = app = Flask(__name__)
-run_with_ngrok(application)
 
-
+# root directory
 @app.route("/")
 def hello():
     return render_template('welcome.html')
@@ -39,11 +41,8 @@ def make_predict():
         print(prediction)
         result = {"prediction": prediction}
     except Exception as e:
-        # print("Error")
+        print(e)
         result = {"prediction": -9999}
-
-    # print(prediction)
-    #prediction = prediction + 1
 
     return jsonify(result)
 
