@@ -9,6 +9,17 @@ import datetime
 import whois
 
 
+def url_having_ip(url):
+    # using regular function
+    #    symbol = regex.findall(r'(http((s)?)://)((((\d)+).)*)((\w)+)(/((\w)+))?',url)
+ #   if(len(symbol)!=0):
+  #      having_ip = 1 #phishing
+   # else:
+    #    having_ip = -1 #legitimate
+    # return(having_ip)
+    return 0
+
+
 def url_length(url):
     length = len(url)
     if(length < 54):
@@ -19,12 +30,22 @@ def url_length(url):
         return 1
 
 
+def url_short(url):
+    # ongoing
+    return 0
+
+
 def having_at_symbol(url):
     symbol = regex.findall(r'@', url)
     if(len(symbol) == 0):
         return -1
     else:
         return 1
+
+
+def doubleSlash(url):
+    # ongoing
+    return 0
 
 
 def prefix_suffix(url):
@@ -103,11 +124,20 @@ def domain_registration(url):
         return 0
 
 
+def favicon(url):
+    # ongoing
+    return 0
+
+
+def port(url):
+    # ongoing
+    return 0
+
+
 def https_token(url):
     subDomain, domain, suffix = extract(url)
     host = subDomain + '.' + domain + '.' + suffix
-    # attacker can trick by putting https in domain part
-    if(host.count('https')):
+    if(host.count('https')):  # attacker can trick by putting https in domain part
         return 1
     else:
         return -1
@@ -215,6 +245,11 @@ def Links_in_tags(url):
         return 0
 
 
+def sfh(url):
+    # ongoing
+    return 0
+
+
 def email_submit(url):
     try:
         opener = urllib.request.urlopen(url).read()
@@ -225,6 +260,36 @@ def email_submit(url):
             return -1
     except:
         return 0
+
+
+def abnormal_url(url):
+    # ongoing
+    return 0
+
+
+def redirect(url):
+    # ongoing
+    return 0
+
+
+def on_mouseover(url):
+    # ongoing
+    return 0
+
+
+def rightClick(url):
+    # ongoing
+    return 0
+
+
+def popup(url):
+    # ongoing
+    return 0
+
+
+def iframe(url):
+    # ongoing
+    return 0
 
 
 def age_of_domain(url):
@@ -238,14 +303,57 @@ def age_of_domain(url):
         else:
             return 1
     except Exception as e:
+        #print("Here we go")
         print(e)
         return 0
 
 
+def dns(url):
+    # ongoing
+    return 0
+
+
+def web_traffic(url):
+    # ongoing
+    return 0
+
+
+def page_rank(url):
+    # ongoing
+    return 0
+
+
+def google_index(url):
+    # ongoing
+    return 0
+
+
+def links_pointing(url):
+    # ongoing
+    return 0
+
+
+def statistical(url):
+    # ongoing
+    return 0
+
+
 def main(url):
 
-    check = [[url_length(url), having_at_symbol(url), prefix_suffix(url), sub_domain(url), SSLfinal_State(
-        url), domain_registration(url), https_token(url), request_url(url), url_of_anchor(url), Links_in_tags(url), email_submit(url), age_of_domain(url)]]
+    check = [[url_having_ip(url), url_length(url), url_short(url), having_at_symbol(url),
+              doubleSlash(url), prefix_suffix(
+                  url), sub_domain(url), SSLfinal_State(url),
+              domain_registration(url), favicon(url), port(
+                  url), https_token(url), request_url(url),
+              url_of_anchor(url), Links_in_tags(url), sfh(
+                  url), email_submit(url), abnormal_url(url),
+              redirect(url), on_mouseover(url), rightClick(
+                  url), popup(url), iframe(url),
+              age_of_domain(url), dns(url), web_traffic(
+                  url), page_rank(url), google_index(url),
+              links_pointing(url), statistical(url)]]
 
-    # print(check)
+    print(check)
     return check
+
+
