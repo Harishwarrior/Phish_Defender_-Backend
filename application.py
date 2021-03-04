@@ -1,4 +1,4 @@
-from flask import Flask, abort, jsonify, request
+from flask import Flask, abort, jsonify, request,render_template
 from flask_cors import CORS, cross_origin
 from flask_ngrok import run_with_ngrok
 import time
@@ -17,7 +17,7 @@ run_with_ngrok(application)
 
 @app.route("/")
 def hello():
-    return "Welcome to Phish-API!"
+    return render_template('welcome.html')
 
 
 @app.route("/api", methods=['POST'])

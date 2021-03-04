@@ -357,4 +357,4 @@ def main(url):
     print(check)
     return check
 
-# main("http://wwww.techglows.com")
+
