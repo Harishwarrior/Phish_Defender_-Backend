@@ -13,7 +13,7 @@ import numpy as np
 
 # Start ngrok when app is run
 app = Flask(__name__)   
-run_with_ngrok(app)
+# run_with_ngrok(app)
 
 
 # root directory
