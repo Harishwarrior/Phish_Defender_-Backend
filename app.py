@@ -12,7 +12,7 @@ import inputScript
 import numpy as np
 
 # Start ngrok when app is run
-app = Flask(__name__)
+app = Flask(__name__)   
 run_with_ngrok(app)
 
 
@@ -50,7 +50,7 @@ def make_predict():
 if __name__ == "__main__":
 
     # when deploying in NGROK server(PC as server)
-    app.run()
+    # app.run()
 
     # When using Heroku or any other online platform for deployment
-    # app.run(debug=True,host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
+    app.run(debug=True,host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
