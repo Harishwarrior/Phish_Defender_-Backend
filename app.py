@@ -19,7 +19,7 @@ app = Flask(__name__)
 # root directory
 @app.route("/")
 def hello():
-    return render_template('welcome.html')
+    return render_template('index.html')
 
 
 @app.route("/api", methods=['POST'])
