@@ -1,4 +1,4 @@
-# Phish_Defender_Backend
+# phish_defender_backend
 
 ## How to run:
 1. Clone the repo ``git clone https://github.com/Harishwarrior/Phish_Defender_Backend.git``
