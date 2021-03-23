@@ -11,8 +11,9 @@ import joblib
 import inputScript
 import numpy as np
 
-# Start ngrok when app is run
+
 app = Flask(__name__)   
+# Start ngrok when app is run
 # run_with_ngrok(app)
 
 
